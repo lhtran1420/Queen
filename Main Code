@@ -3,13 +3,6 @@ using namespace std;
 
 int check[30][30]={0};
 
-string tinhsau(int i) {
-	string s;
-	s.push_back(i+'0');
-	
-	return s;
-}
-
 int ktra(int x, int y) {
 	if((x<=8 && x>=1) && (y<=8 && y>=1)) return 1;
 	else return 0;
@@ -34,7 +27,11 @@ void lietke(int hang, int cot, string sau) {
 	for(int i=1; i<=8; i++) {
 		if(check[i][cot+1]==0) {
 			tinh(i,cot+1,1);		
-			lietke(i, cot+1,sau+ tinhsau(i)+" " +tinhsau(cot+1)+"\n");		
+			stringstream ss,ss1;
+			ss << i;
+			ss1 << (cot+1);
+			
+			lietke(i, cot+1,sau+ ss.str()+" " +ss1.str()+"\n");		
 			tinh(i,cot+1,-1);
 		}
 	}
