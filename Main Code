@@ -3,36 +3,36 @@ using namespace std;
 
 int check[30][30]={0};
 
-int ktra(int x, int y) {
+int test(int x, int y) {
 	if((x<=8 && x>=1) && (y<=8 && y>=1)) return 1;
 	else return 0;
 }
 
-void tinh(int i, int j, int value) {
+void update(int i, int j, int value) {
 	for(int k=1; k<=8; k++) {
-		if(ktra(i,k)==1) check[i][k] += value;
-		if(ktra(k,j)==1) check[k][j] += value;
+		if(test(i,k)==1) check[i][k] += value;
+		if(test(k,j)==1) check[k][j] += value;
 		
-		if(ktra(i+k,j-k)) check[i+k][j-k] += value;
-		if(ktra(i-k,j-k)) check[i-k][j-k] += value;
-		if(ktra(i-k,j+k)) check[i-k][j+k] += value;
-		if(ktra(i+k,j+k)) check[i+k][j+k] += value; 
+		if(test(i+k,j-k)) check[i+k][j-k] += value;
+		if(test(i-k,j-k)) check[i-k][j-k] += value;
+		if(test(i-k,j+k)) check[i-k][j+k] += value;
+		if(test(i+k,j+k)) check[i+k][j+k] += value; 
 	}		
 }
 
-void lietke(int hang, int cot, string sau) {
-	if(cot>8) return;
-	if(cot==8) cout<<sau<<endl;
+void lietke(int row, int col, string sau) {
+	if(col>8) return;
+	if(col==8) cout<<sau<<endl;
 	
 	for(int i=1; i<=8; i++) {
-		if(check[i][cot+1]==0) {
-			tinh(i,cot+1,1);		
+		if(check[i][col+1]==0) {
+			update(i,col+1,1);		
 			stringstream ss,ss1;
 			ss << i;
-			ss1 << (cot+1);
+			ss1 << (col+1);
 			
-			lietke(i, cot+1,sau+ ss.str()+" " +ss1.str()+"\n");		
-			tinh(i,cot+1,-1);
+			lietke(i, col+1,sau+ ss.str()+" " +ss1.str()+"\n");		
+			update(i,col+1,-1);
 		}
 	}
 }
