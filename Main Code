@@ -35,8 +35,8 @@ void lietke(int row, int col, string sau) { // display all the ways we can set 8
 			ss << i;
 			ss1 << (col+1);
 			
-			lietke(i, col+1,sau+ ss.str()+" " +ss1.str()+"\n"); // go to the square on the next columns		
-			update(i,col+1,-1); // minus all the squares when we don't set the
+			lietke(i, col+1,sau+ ss.str()+" " +ss1.str()+"\n"); // go to the square (i,col+1) on the next columns		
+			update(i,col+1,-1); // minus all the squares by 1 when we don't set the queens on the square(i,col+1).
 		}
 	}
 }
